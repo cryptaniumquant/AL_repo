@@ -33,3 +33,12 @@ CREATE TABLE experiment_params (
     param_value TEXT NOT NULL,    -- "14" (хранится как строка)
     FOREIGN KEY (experiment_id) REFERENCES experiments(id)
 );
+
+
+-- Таблица для хранения кривой net profit для каждого запуска
+CREATE TABLE net_profit (
+    experiment_id INTEGER NOT NULL,
+    value DECIMAL,
+    position INTEGER,
+    FOREIGN KEY (experiment_id) REFERENCES experiments(id)
+);
