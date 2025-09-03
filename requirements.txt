@@ -1,0 +1,8 @@
+ccxt==4.4.98
+numpy==1.23.5
+pandas==2.0.3
+matplotlib==3.7.5
+./talib_whl/ta_lib-0.5.2-cp38-cp38-win_amd64.whl
+pymysql
+deap==1.4
+path
