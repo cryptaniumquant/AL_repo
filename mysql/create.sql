@@ -23,6 +23,7 @@ CREATE TABLE experiments (
     timeframe TEXT NOT NULL,      -- "1h", "4h"
     start_date DATETIME NOT NULL,
     end_date DATETIME NOT NULL,
+    net_profit JSON NOT NULL,
     FOREIGN KEY (strategy_id) REFERENCES strategies(id)
 );
 
@@ -31,14 +32,5 @@ CREATE TABLE experiment_params (
     experiment_id INTEGER NOT NULL,
     param_name TEXT NOT NULL,     -- "rsi_period"
     param_value TEXT NOT NULL,    -- "14" (хранится как строка)
-    FOREIGN KEY (experiment_id) REFERENCES experiments(id)
-);
-
-
--- Таблица для хранения кривой net profit для каждого запуска
-CREATE TABLE net_profit (
-    experiment_id INTEGER NOT NULL,
-    value DECIMAL,
-    position INTEGER,
     FOREIGN KEY (experiment_id) REFERENCES experiments(id)
 );
