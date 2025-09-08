@@ -51,10 +51,9 @@ class MysqlConnector:
 
         # Заполняем net_profit
         with self.connection.cursor() as cursor:
-            net_profit_to_sql = [(experiment_id, v, i) for i, v in enumerate(net_profit)]
-
-            sql = "INSERT INTO net_profit (experiment_id, value, position) VALUES (%s, %s, %s)"
-            cursor.executemany(sql, net_profit_to_sql) 
+            net_profit_sql = '[' + ", ".join([str(v) for v in net_profit]) + ']'
+            sql = "INSERT INTO experiment_results (experiment_id, results) VALUES (%s, %s)"
+            cursor.execute(sql, (experiment_id, net_profit_sql))
 
         self.connection.commit()
         
